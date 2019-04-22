@@ -1,0 +1,78 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ApplicationName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 64,
+            "metadata": {
+              "description": "Managed Application Name"
+            }
+          },
+          "ApplicationDescription": {
+            "type": "string",
+            "metadata": {
+                "description": "Managed Application description"
+              }
+          },
+          "ApplicationDisplayName": {
+            "type": "string",
+            "metadata": {
+                "description": "Managed Application displayname"
+              }
+          },
+          "OwnerPrincipalID": {
+            "type": "string",
+            "defaultValue": "80b404f2-4892-480c-abd9-aecc30c975db",
+            "metadata": {
+              "description": "Owner (user/ServicePrincipal/group) of resources to be deployed"
+            } 
+          },
+          "OwnerRoleID": {
+            "type": "string",
+            "defaultValue": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+            "metadata": {
+              "description": "Owner (user/ServicePrincipal/group) of resources to be deployed"
+            } 
+          },
+          "ApplicationZIPFilePath":{
+              "type": "string",
+              "defaultValue": "https://raw.githubusercontent.com/Benoitsautierecellenza/ManagedApplication/master/Bastion.zip",
+              "metadata": {
+                "description": "Path of Zip Files containing application definition"
+              } 
+          },
+          "ApplicationLockLevel":{
+            "type": "string",
+            "allowedValues": [
+                "CanNotDelete",
+                "None",
+                "ReadOnly"
+            ]
+          }
+    },
+    "variables": {
+        "Location": "[resourceGroup().location]"
+    },
+    "resources": [
+        {
+        "name": "[parameters('ApplicationName')]",
+        "apiVersion": "2018-06-01",
+        "type": "Microsoft.Solutions/applicationDefinitions",
+        "location": "[variables('Location')]",
+        "properties": {
+            "authorizations": [
+              {
+                "principalId": "[Parameters('OwnerPrincipalID')]",
+                "roleDefinitionId": "[Parameters('OwnerRoleID')]"
+              }
+            ],
+            "description": "[Parameters('ApplicationDescription')]",
+            "displayName": "[Parameters('ApplicationDisplayName')]",
+            "lockLevel": "[Parameters('ApplicationLockLevel')]",
+            "packageFileUri": "[Parameters('ApplicationZIPFilePath')]"
+          }
+        }
+    ]
+}
