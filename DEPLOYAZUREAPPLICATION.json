@@ -24,14 +24,12 @@
           },
           "OwnerPrincipalID": {
             "type": "string",
-            "defaultValue": "80b404f2-4892-480c-abd9-aecc30c975db",
             "metadata": {
               "description": "Owner (user/ServicePrincipal/group) of resources to be deployed"
             } 
           },
           "OwnerRoleID": {
             "type": "string",
-            "defaultValue": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
             "metadata": {
               "description": "Owner (user/ServicePrincipal/group) of resources to be deployed"
             } 
