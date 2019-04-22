@@ -1,0 +1,61 @@
+{
+  "properties": {
+    "parameters": {
+      "deployAzureManagedApplication_OwnerPrincipalID": {
+        "type": "string",
+        "metadata": {
+          "displayName": "OwnerPrincipalID (Deploy Azure Managed Application)",
+          "description": "Owner (user/ServicePrincipal/group) of resources to be deployed"
+        },
+        "defaultValue": "80b404f2-4892-480c-abd9-aecc30c975db",
+        "allowedValues": []
+      },
+      "deployAzureManagedApplication_OwnerRoleID": {
+        "type": "string",
+        "metadata": {
+          "displayName": "OwnerRoleID (Deploy Azure Managed Application)",
+          "description": "Owner (user/ServicePrincipal/group) of resources to be deployed"
+        },
+        "defaultValue": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+        "allowedValues": []
+      },
+      "deployAzureManagedApplication_ApplicationZIPFilePath": {
+        "type": "string",
+        "metadata": {
+          "displayName": "ApplicationZIPFilePath (Deploy Azure Managed Application)",
+          "description": "Path of Zip Files containing application definition"
+        },
+        "defaultValue": "https://raw.githubusercontent.com/Benoitsautierecellenza/ManagedApplication/master/Bastion.zip",
+        "allowedValues": []
+      },
+      "deployAzureManagedApplication_ApplicationLockLevel": {
+        "type": "string",
+        "metadata": {
+          "displayName": "ApplicationLockLevel (Deploy Azure Managed Application)"
+        },
+        "allowedValues": [
+          "CanNotDelete",
+          "None",
+          "ReadOnly"
+        ]
+      }
+    },
+    "resourceGroups": {
+      "ManagedApplication": {
+        "name": "ManagedApplication",
+        "location": "westeurope",
+        "metadata": {
+          "displayName": "Create ManagedApplication RG"
+        },
+        "dependsOn": []
+      }
+    },
+    "targetScope": "subscription",
+    "status": {
+      "timeCreated": "2019-04-22T18:06:05+02:00",
+      "lastModified": "2019-04-22T18:08:26+02:00"
+    },
+    "description": "Deploy Azure Managed Application into resource Group ManagedApplication"
+  },
+  "type": "Microsoft.Blueprint/blueprints"
+}
